@@ -1,4 +1,4 @@
-import { Button, Col, Flex, Form, Image, Input, Row, Typography } from 'antd'
+import { Alert, Button, Col, Flex, Form, Image, Input, Row, Typography } from 'antd'
 import React from 'react'
 import logo from '../assets/intraguard-logo.png'
 import RootLayout from '../layout'
@@ -86,22 +86,29 @@ export default function Welcome() {
                                 continuar, ou <i>Cancelar</i> para sair do instalador.
                             </Typography.Paragraph>
                         </div>
-                        <Form
-                            form={form}
-                            onFinish={handleFinishForm}
-                            layout='vertical'
-                            size='small'
-                            variant='filled'
-                        >
-                            <Form.Item
-                                required
-                                rules={[{ required: true }]}
-                                name={'KEYCLOAK_CLIENT_ID'}
-                                label={'Client ID:'}
+                        <div>
+                            <Form
+                                form={form}
+                                onFinish={handleFinishForm}
+                                layout='vertical'
+                                size='small'
+                                variant='filled'
                             >
-                                <Input />
-                            </Form.Item>
-                        </Form>
+                                <Form.Item
+                                    required
+                                    rules={[{ required: true }]}
+                                    name={'KEYCLOAK_CLIENT_ID'}
+                                    label={'Client ID:'}
+                                >
+                                    <Input />
+                                </Form.Item>
+                            </Form>
+                            <Alert
+                                showIcon
+                                type='warning'
+                                message={'É necessário ter node v* ou superior instalado no seu computador.'}
+                            />
+                        </div>
                     </Flex>
                 </Col>
             </Row>

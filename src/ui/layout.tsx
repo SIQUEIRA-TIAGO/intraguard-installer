@@ -33,11 +33,10 @@ export default function RootLayout(
                         />
                         <div>
                             <Typography.Title level={4}>
-                                Selecione o local de destino
+                                {header.title}
                             </Typography.Title>
                             <Typography.Text style={{fontSize: 14}}>
-                                Selecione o local de destino onde o serviço será
-                                instalado.
+                                {header.description}
                             </Typography.Text>
                         </div>
                     </Flex>

@@ -30,6 +30,9 @@ export default function AntdProvider({ children }: PropsWithChildren) {
                     Select: {
                         optionFontSize: 12,
                         fontSize: 12
+                    },
+                    Alert: {
+                        fontSize: 12,
                     }
                 },
             }}

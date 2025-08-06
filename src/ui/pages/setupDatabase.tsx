@@ -94,7 +94,7 @@ export default function SetupDatabase() {
                         <Form.Item
                             required
                             rules={[{ required: true }]}
-                            initialValue={'5432'}
+                            initialValue={'1521'}
                             name={'DB_PORT'}
                             label={'Porta:'}
                         >

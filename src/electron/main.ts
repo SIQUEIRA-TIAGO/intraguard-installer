@@ -8,13 +8,20 @@ import { chooseDir, cloneRepository, writeJsonEnv } from './utils.js'
 
 let directory: string | null = null
 const userEnvs: IUserEnvs = {
+    APPLICATION_GMAIL: '',
+    APPLICATION_GMAIL_APP_PASSWORD: '',
+    API_HTTP_PORT: '',
+    CENTRAL_API_URL: '',
+    CENTRAL_API_PORT: '',
+    KEYCLOAK_URL: '',
+    KEYCLOAK_REALM: '',
     KEYCLOAK_CLIENT_ID: '',
-    DB_DATABASE: '',
     DB_USER: '',
-    DB_PASSWORD: '',
     DB_HOST: '',
     DB_PORT: '',
-    DB_DIALECT: ''
+    DB_DIALECT: '',
+    DB_PASSWORD: '',
+    DB_DATABASE: '',
 }
 
 function createWindow() {

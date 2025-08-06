@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import Routes from './routes'
 
 import './index.css'
-import AntdProvider from './providers/AntdProvider'
+import AntdProvider from './providers/antdProvider'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -1,4 +1,11 @@
 interface IUserEnvs {
+  KEYCLOAK_URL: string,
+  KEYCLOAK_REALM: string,
+  API_HTTP_PORT: string,
+  CENTRAL_API_URL: string,
+  CENTRAL_API_PORT: string,
+  APPLICATION_GMAIL: string,
+  APPLICATION_GMAIL_APP_PASSWORD: string,
   KEYCLOAK_CLIENT_ID: string,
   DB_DATABASE: string,
   DB_USER: string,

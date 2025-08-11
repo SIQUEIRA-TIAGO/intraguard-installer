@@ -14,6 +14,7 @@ export function isDev() {
 
 export async function cloneRepository(targetDirectory: string, repositoryUrl: string): Promise<boolean> {
     try {
+        console.log(`Cloning repository to target folder [${targetDirectory}]`)
         await git.clone(repositoryUrl, targetDirectory);
         return true
     } catch (err) {
@@ -34,9 +35,16 @@ export async function chooseDir(): Promise<string | null> {
 export async function writeJsonEnv(dirPath: string, data: IUserEnvs): Promise<boolean> {
     try {
         const envData = Object.keys(data)
-            .map(key => `${key}=${data[key as keyof IUserEnvs]}`)
+            .map(key => {
+                const value = data[key as keyof IUserEnvs]
+                if (typeof value === 'string')
+                    return `${key}="${data[key as keyof IUserEnvs]}"`
+                if (typeof value === 'number')
+                    return `${key}=${data[key as keyof IUserEnvs]}`
+            })
             .join('\n');
-
+            
+        console.log('Writing enviroments variables: ', envData)
         const filePath = path.join(dirPath, `.env`)
         await fs.writeFile(filePath, envData, 'utf8');
         return true
@@ -47,6 +55,7 @@ export async function writeJsonEnv(dirPath: string, data: IUserEnvs): Promise<bo
 }
 
 export async function buildApp(targetDirectory: string) {
+    console.log(`Installing packages`)
     const { stdout: installStdout, stderr: installStderr } = await execPromise(
         'npm install',
         { cwd: targetDirectory }
@@ -54,6 +63,7 @@ export async function buildApp(targetDirectory: string) {
     if (installStderr) throw new Error(`[Install error] ${installStderr}`)
     console.log('Install logs', installStdout)
 
+    console.log(`Building client`)
     const { stdout: buildStdOut, stderr: buildStderr } = await execPromise(
         'npm run build',
         { cwd: targetDirectory }
@@ -63,6 +73,7 @@ export async function buildApp(targetDirectory: string) {
 }
 
 export async function startService(targetDirectory: string) {
+    console.log(`Starting as service`)
     const { stdout, stderr } = await execPromise(
         'npm start-service',
         { cwd: targetDirectory }

@@ -4,7 +4,7 @@ import { getPreloadPath } from './pathResolver.js'
 import { createTray } from './tray.js'
 import { promises as fs } from 'fs';
 import path from 'path'
-import { buildApp, chooseDir, cloneRepository, writeJsonEnv } from './utils.js'
+import { buildApp, chooseDir, cloneRepository, startService, writeJsonEnv } from './utils.js'
 
 let directory: string | null = null
 const userEnvs: IUserEnvs = {
@@ -84,5 +84,6 @@ ipcMain.handle('install', async (): Promise<boolean> => {
     await cloneRepository(finalDirPath, repositoryUrl);
     await writeJsonEnv(finalDirPath, userEnvs)
     await buildApp(finalDirPath)
+    await startService(finalDirPath)
     return true
 });

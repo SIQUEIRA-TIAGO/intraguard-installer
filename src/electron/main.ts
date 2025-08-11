@@ -4,24 +4,22 @@ import { getPreloadPath } from './pathResolver.js'
 import { createTray } from './tray.js'
 import { promises as fs } from 'fs';
 import path from 'path'
-import { chooseDir, cloneRepository, writeJsonEnv } from './utils.js'
+import { buildApp, chooseDir, cloneRepository, writeJsonEnv } from './utils.js'
 
 let directory: string | null = null
 const userEnvs: IUserEnvs = {
-    APPLICATION_GMAIL: '',
-    APPLICATION_GMAIL_APP_PASSWORD: '',
-    API_HTTP_PORT: '',
-    CENTRAL_API_URL: '',
-    CENTRAL_API_PORT: '',
-    KEYCLOAK_URL: '',
-    KEYCLOAK_REALM: '',
-    KEYCLOAK_CLIENT_ID: '',
-    DB_USER: '',
-    DB_HOST: '',
-    DB_PORT: '',
-    DB_DIALECT: '',
-    DB_PASSWORD: '',
-    DB_DATABASE: '',
+    KEYCLOAK_URL: "https://intraguard.dataunique.com.br/kc/auth",
+    KEYCLOAK_CLIENT_ID: "ORG_SUPER_ADM",
+    KEYCLOAK_REALM: "intraguard-dev",
+    KEYCLOAK_CLIENT_SECRET: "BKGRh4ipuiURxy5lVAB4gWh796zGwTeR",
+    API_HTTP_PORT: 4001,
+    CENTRAL_API_BASE_URL: "http://intraguard.dataunique.com.br/api/",
+    DB_DATABASE: "",
+    DB_USER: "",
+    DB_PASSWORD: "",
+    DB_HOST: "",
+    DB_PORT: 1521,
+    DB_DIALECT: ""
 }
 
 function createWindow() {
@@ -79,11 +77,12 @@ ipcMain.handle('install', async (): Promise<boolean> => {
     if (!directory)
         throw new Error('Missing target directory')
 
-    const finalDirPath = path.join(directory, 'intraguard');
+    const finalDirPath = path.join(directory, 'intraguard-service');
     await fs.mkdir(finalDirPath, { recursive: true });
-    const repositoryUrl = 'https://github.com/SIQUEIRA-TIAGO/dog-finder.git';
+    const repositoryUrl = 'https://github.com/SIQUEIRA-TIAGO/client.git';
 
     await cloneRepository(finalDirPath, repositoryUrl);
     await writeJsonEnv(finalDirPath, userEnvs)
+    await buildApp(finalDirPath)
     return true
 });

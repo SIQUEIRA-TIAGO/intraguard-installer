@@ -75,7 +75,7 @@ export async function buildApp(targetDirectory: string) {
 export async function startService(targetDirectory: string) {
     console.log(`Starting as service`)
     const { stdout, stderr } = await execPromise(
-        'npm start-service',
+        'npm run start-service',
         { cwd: targetDirectory }
     );
 

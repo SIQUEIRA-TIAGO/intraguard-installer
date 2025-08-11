@@ -37,13 +37,13 @@ export async function writeJsonEnv(dirPath: string, data: IUserEnvs): Promise<bo
         const envData = Object.keys(data)
             .map(key => {
                 const value = data[key as keyof IUserEnvs]
-                if (typeof value === 'string')
-                    return `${key}="${data[key as keyof IUserEnvs]}"`
-                if (typeof value === 'number')
+                if (/^\d+$/.test(value.toString()))
                     return `${key}=${data[key as keyof IUserEnvs]}`
+
+                return `${key}="${data[key as keyof IUserEnvs]}"`
             })
             .join('\n');
-            
+
         console.log('Writing enviroments variables: ', envData)
         const filePath = path.join(dirPath, `.env`)
         await fs.writeFile(filePath, envData, 'utf8');

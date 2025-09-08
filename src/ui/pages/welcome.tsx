@@ -5,7 +5,8 @@ import RootLayout from '../layout'
 import { useNavigate } from 'react-router-dom';
 
 interface IForm {
-    KEYCLOAK_CLIENT_ID: string
+    ACCESS_TOKEN: string
+    ORG_ID: string
 }
 
 export default function Welcome() {
@@ -97,8 +98,16 @@ export default function Welcome() {
                                 <Form.Item
                                     required
                                     rules={[{ required: true }]}
-                                    name={'KEYCLOAK_CLIENT_ID'}
-                                    label={'Client ID:'}
+                                    name={'ORG_ID'}
+                                    label={'ID da organização:'}
+                                >
+                                    <Input />
+                                </Form.Item>
+                                <Form.Item
+                                    required
+                                    rules={[{ required: true }]}
+                                    name={'JWT_TOKEN'}
+                                    label={'Token da organização:'}
                                 >
                                     <Input />
                                 </Form.Item>

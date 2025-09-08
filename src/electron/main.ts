@@ -8,10 +8,8 @@ import { buildApp, chooseDir, cloneRepository, startService, writeJsonEnv } from
 
 let directory: string | null = null
 const userEnvs: IUserEnvs = {
-    KEYCLOAK_URL: "https://intraguard.dataunique.com.br/kc/auth",
-    KEYCLOAK_CLIENT_ID: "ORG_SUPER_ADM",
-    KEYCLOAK_REALM: "intraguard-dev",
-    KEYCLOAK_CLIENT_SECRET: "BKGRh4ipuiURxy5lVAB4gWh796zGwTeR",
+    ORG_ID: "",
+    ACCESS_TOKEN: "",
     API_HTTP_PORT: 4001,
     CENTRAL_API_BASE_URL: "http://intraguard.dataunique.com.br/api/",
     DB_DATABASE: "",

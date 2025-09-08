@@ -1,8 +1,6 @@
 interface IUserEnvs {
-KEYCLOAK_URL: string
-KEYCLOAK_CLIENT_ID: string
-KEYCLOAK_REALM: string
-KEYCLOAK_CLIENT_SECRET: string
+ACCESS_TOKEN: string
+ORG_ID: string
 API_HTTP_PORT:number
 CENTRAL_API_BASE_URL: string
 DB_DATABASE: string

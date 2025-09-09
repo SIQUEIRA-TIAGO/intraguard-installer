@@ -8,7 +8,7 @@ interface IForm {
     DB_USER: string
     DB_PASSWORD: string
     DB_HOST: string
-    DB_PORT: string
+    DB_PORT: number
     DB_DIALECT: 'mysql' | 'mssql' | 'sqlite' | 'postgres' | 'oracle' | 'mariadb'
 }
 

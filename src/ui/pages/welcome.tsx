@@ -106,7 +106,7 @@ export default function Welcome() {
                                 <Form.Item
                                     required
                                     rules={[{ required: true }]}
-                                    name={'JWT_TOKEN'}
+                                    name={'ACESS_TOKEN'}
                                     label={'Token da organização:'}
                                 >
                                     <Input />
